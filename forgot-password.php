@@ -246,6 +246,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax']) && $_POST['aj
     </style>
 </head>
 <body>
+    <!-- Language Switcher -->
+    <?php include 'includes/lang-switcher.php'; ?>
+
     <div class="container">
         <div class="card">
             <div class="brand">
@@ -336,5 +339,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax']) && $_POST['aj
             }
         });
     </script>
+
+    <!-- Auto Translation Script -->
+    <script src="js/auto-translate.js"></script>
 </body>
 </html>

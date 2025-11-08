@@ -469,6 +469,9 @@ getChatbotWidget();
     </style>
 </head>
 <body>
+    <!-- Language Switcher -->
+    <?php include 'includes/lang-switcher.php'; ?>
+
     <div class="dynamic-background"></div>
     <div class="grid-3d"></div>
     <div class="glowing-particles" id="particles"></div>
@@ -595,5 +598,8 @@ getChatbotWidget();
             createParticles();
         });
     </script>
+
+    <!-- Auto Translation Script -->
+    <script src="js/auto-translate.js"></script>
 </body>
 </html>

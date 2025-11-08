@@ -2556,6 +2556,9 @@ $sales_stats = $stmt->fetch();
 
 <body>
 
+    <!-- Language Switcher -->
+    <?php include 'includes/lang-switcher.php'; ?>
+
     <!-- الخلفية الديناميكية -->
 
     <div class="dynamic-background"></div>
@@ -3853,6 +3856,9 @@ $sales_stats = $stmt->fetch();
         });
 
     </script>
+
+    <!-- Auto Translation Script -->
+    <script src="js/auto-translate.js"></script>
 
 </body>
 
