@@ -11,6 +11,9 @@ define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_CHARSET', 'utf8mb4');
 
+// متغير الاتصال
+$conn = null;
+
 try {
     // إنشاء اتصال PDO
     $conn = new PDO(
@@ -24,8 +27,17 @@ try {
         ]
     );
 } catch (PDOException $e) {
-    // في حالة فشل الاتصال، عرض رسالة خطأ
-    die("خطأ في الاتصال بقاعدة البيانات: " . $e->getMessage());
+    // في حالة فشل الاتصال، عرض رسالة خطأ بدون إيقاف التنفيذ
+    error_log("Database connection error: " . $e->getMessage());
+
+    // عرض رسالة للمستخدم فقط في بيئة التطوير
+    if (isset($_SERVER['SERVER_NAME']) && $_SERVER['SERVER_NAME'] === 'localhost') {
+        echo "<!-- Database connection error. Please check config/database.php -->";
+        echo "<!-- Error: " . htmlspecialchars($e->getMessage()) . " -->";
+    }
+
+    // لا تستخدم die() لتجنب infinite reload
+    // $conn سيبقى null والصفحات يجب أن تتحقق منه
 }
 
 ?>

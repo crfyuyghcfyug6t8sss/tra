@@ -7,20 +7,18 @@ require_once 'config/database.php';
 require_once 'includes/functions.php';
 
 // ✅ تحويل تلقائي للداشبورد إذا كان المستخدم مسجل دخول
-
+// تم تعطيل هذا مؤقتاً لتجنب redirect loop
+/*
 if (isLoggedIn()) {
-
     header("Location: dashboard.php");
-
     exit;
-
 }
+*/
 
- 
-
-// جلب المزادات النشطة
-
-$stmt = $conn->query("
+// جلب المزادات النشطة (فقط إذا كان الاتصال بقاعدة البيانات متاح)
+$auctions = [];
+if ($conn !== null) {
+    $stmt = $conn->query("
 
     SELECT
 
@@ -46,35 +44,33 @@ $stmt = $conn->query("
 
     LIMIT 6
 
-");
+    ");
 
-$auctions = $stmt->fetchAll();
+    $auctions = $stmt->fetchAll();
+} else {
+    // قيم افتراضية إذا لم يكن هناك اتصال
+    $auctions = [];
+}
 
- 
+// إحصائيات الموقع (فقط إذا كان الاتصال متاح)
+$total_users = 0;
+$total_completed = 0;
+$total_active = 0;
+$total_sellers = 0;
 
-// إحصائيات الموقع
+if ($conn !== null) {
+    $stmt = $conn->query("SELECT COUNT(*) as total FROM users");
+    $total_users = $stmt->fetch()['total'];
 
-$stmt = $conn->query("SELECT COUNT(*) as total FROM users");
+    $stmt = $conn->query("SELECT COUNT(*) as total FROM auctions WHERE status = 'completed'");
+    $total_completed = $stmt->fetch()['total'];
 
-$total_users = $stmt->fetch()['total'];
+    $stmt = $conn->query("SELECT COUNT(*) as total FROM auctions WHERE status = 'active'");
+    $total_active = $stmt->fetch()['total'];
 
- 
-
-$stmt = $conn->query("SELECT COUNT(*) as total FROM auctions WHERE status = 'completed'");
-
-$total_completed = $stmt->fetch()['total'];
-
- 
-
-$stmt = $conn->query("SELECT COUNT(*) as total FROM auctions WHERE status = 'active'");
-
-$total_active = $stmt->fetch()['total'];
-
- 
-
-$stmt = $conn->query("SELECT COUNT(DISTINCT seller_id) as total FROM auctions");
-
-$total_sellers = $stmt->fetch()['total'];
+    $stmt = $conn->query("SELECT COUNT(DISTINCT seller_id) as total FROM auctions");
+    $total_sellers = $stmt->fetch()['total'];
+}
 
 ?>
 
