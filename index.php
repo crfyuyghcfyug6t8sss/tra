@@ -1984,29 +1984,241 @@ $total_sellers = $stmt->fetch()['total'];
 
  
 
+        /* 🍔 زر الهامبرغر للموبايل */
+
+        .hamburger-btn {
+
+            display: none;
+
+            flex-direction: column;
+
+            gap: 6px;
+
+            background: var(--glass-white);
+
+            backdrop-filter: blur(10px);
+
+            border: 1px solid var(--glass-border);
+
+            border-radius: 15px;
+
+            padding: 12px;
+
+            cursor: pointer;
+
+            transition: var(--transition);
+
+            z-index: 1001;
+
+        }
+
+
+
+        .hamburger-btn span {
+
+            width: 30px;
+
+            height: 3px;
+
+            background: white;
+
+            border-radius: 3px;
+
+            transition: var(--transition);
+
+        }
+
+
+
+        .hamburger-btn:hover {
+
+            background: var(--royal-gradient);
+
+            transform: scale(1.1);
+
+        }
+
+
+
+        .hamburger-btn.active span:nth-child(1) {
+
+            transform: rotate(45deg) translate(8px, 8px);
+
+        }
+
+
+
+        .hamburger-btn.active span:nth-child(2) {
+
+            opacity: 0;
+
+        }
+
+
+
+        .hamburger-btn.active span:nth-child(3) {
+
+            transform: rotate(-45deg) translate(8px, -8px);
+
+        }
+
+
+
+        /* 📱 القائمة الجانبية للموبايل */
+
+        .mobile-sidebar {
+
+            position: fixed;
+
+            top: 0;
+
+            right: -100%;
+
+            width: 80%;
+
+            max-width: 350px;
+
+            height: 100vh;
+
+            background: var(--glass-white);
+
+            backdrop-filter: blur(20px);
+
+            -webkit-backdrop-filter: blur(20px);
+
+            border-left: 1px solid var(--glass-border);
+
+            z-index: 1002;
+
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+            overflow-y: auto;
+
+            padding: 80px 20px 40px;
+
+        }
+
+
+
+        .mobile-sidebar.active {
+
+            right: 0;
+
+        }
+
+
+
+        .mobile-sidebar-overlay {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: rgba(0, 0, 0, 0.7);
+
+            backdrop-filter: blur(5px);
+
+            z-index: 1001;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition: var(--transition);
+
+        }
+
+
+
+        .mobile-sidebar-overlay.active {
+
+            opacity: 1;
+
+            visibility: visible;
+
+        }
+
+
+
+        .mobile-nav {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 15px;
+
+        }
+
+
+
+        .mobile-nav .nav-item {
+
+            width: 100%;
+
+            justify-content: flex-start;
+
+            padding: 15px 20px;
+
+            font-size: 1.1rem;
+
+        }
+
+
+
+        .mobile-nav .cta-button {
+
+            width: 100%;
+
+            justify-content: center;
+
+            margin-top: 20px;
+
+            padding: 15px 20px;
+
+        }
+
+
+
         /* 📱 استجابة الجوال */
 
         @media (max-width: 768px) {
 
             .header-content {
 
-                flex-direction: column;
+                flex-direction: row;
 
-                gap: 20px;
+                justify-content: space-between;
 
-            }
-
- 
-
-            .luxury-nav {
-
-                flex-wrap: wrap;
-
-                justify-content: center;
+                gap: 10px;
 
             }
 
- 
+
+
+            .hamburger-btn {
+
+                display: flex;
+
+            }
+
+
+
+            .luxury-nav,
+
+            .header-content > .cta-button {
+
+                display: none;
+
+            }
+
+
 
             .hero-title {
 
@@ -2014,7 +2226,7 @@ $total_sellers = $stmt->fetch()['total'];
 
             }
 
- 
+
 
             .hero-subtitle {
 
@@ -2022,7 +2234,7 @@ $total_sellers = $stmt->fetch()['total'];
 
             }
 
- 
+
 
             .section-title {
 
@@ -2030,7 +2242,7 @@ $total_sellers = $stmt->fetch()['total'];
 
             }
 
- 
+
 
             .features-grid,
 
@@ -2040,7 +2252,7 @@ $total_sellers = $stmt->fetch()['total'];
 
             }
 
- 
+
 
             .stats-grid {
 
@@ -2048,7 +2260,7 @@ $total_sellers = $stmt->fetch()['total'];
 
             }
 
- 
+
 
             .footer-content {
 
@@ -2204,7 +2416,7 @@ $total_sellers = $stmt->fetch()['total'];
 
                 </a>
 
- 
+
 
                 <!-- مبدل اللغة -->
 
@@ -2214,7 +2426,7 @@ $total_sellers = $stmt->fetch()['total'];
 
                 </div>
 
- 
+
 
                 <!-- قائمة التنقل الفاخرة -->
 
@@ -2276,7 +2488,7 @@ $total_sellers = $stmt->fetch()['total'];
 
                 </nav>
 
- 
+
 
                 <a href="<?php echo isLoggedIn() ? 'add-vehicle.php' : 'auth/login.php'; ?>" class="cta-button">
 
@@ -2286,11 +2498,103 @@ $total_sellers = $stmt->fetch()['total'];
 
                 </a>
 
+
+
+                <!-- زر الهامبرغر للموبايل -->
+
+                <button class="hamburger-btn" id="hamburgerBtn" aria-label="القائمة">
+
+                    <span></span>
+
+                    <span></span>
+
+                    <span></span>
+
+                </button>
+
             </div>
 
         </div>
 
     </header>
+
+
+
+    <!-- القائمة الجانبية للموبايل -->
+
+    <div class="mobile-sidebar-overlay" id="mobileSidebarOverlay"></div>
+
+    <div class="mobile-sidebar" id="mobileSidebar">
+
+        <nav class="mobile-nav">
+
+            <a href="#home" class="nav-item">
+
+                <i class="fas fa-home"></i>
+
+                <span>الرئيسية</span>
+
+            </a>
+
+            <a href="auctions.php" class="nav-item">
+
+                <i class="fas fa-gavel"></i>
+
+                <span>المزادات</span>
+
+            </a>
+
+            <a href="store.php" class="nav-item">
+
+                <i class="fas fa-store"></i>
+
+                <span>المتجر</span>
+
+            </a>
+
+            <?php if (isLoggedIn()): ?>
+
+                <a href="dashboard.php" class="nav-item">
+
+                    <i class="fas fa-th-large"></i>
+
+                    <span>لوحة التحكم</span>
+
+                </a>
+
+                <a href="auth/logout.php" class="nav-item">
+
+                    <i class="fas fa-power-off"></i>
+
+                    <span>خروج</span>
+
+                </a>
+
+            <?php else: ?>
+
+                <a href="auth/login.php" class="nav-item">
+
+                    <i class="fas fa-sign-in-alt"></i>
+
+                    <span>دخول</span>
+
+                </a>
+
+            <?php endif; ?>
+
+
+
+            <a href="<?php echo isLoggedIn() ? 'add-vehicle.php' : 'auth/login.php'; ?>" class="cta-button">
+
+                <i class="fas fa-plus-circle"></i>
+
+                ابدأ المزايدة
+
+            </a>
+
+        </nav>
+
+    </div>
 
  
 
@@ -2956,6 +3260,42 @@ $total_sellers = $stmt->fetch()['total'];
 
  
 
+        // التحكم في القائمة الجانبية للموبايل
+
+        function toggleMobileSidebar() {
+
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+
+            const mobileSidebar = document.getElementById('mobileSidebar');
+
+            const overlay = document.getElementById('mobileSidebarOverlay');
+
+
+
+            hamburgerBtn.classList.toggle('active');
+
+            mobileSidebar.classList.toggle('active');
+
+            overlay.classList.toggle('active');
+
+
+
+            // منع التمرير عند فتح القائمة
+
+            if (mobileSidebar.classList.contains('active')) {
+
+                document.body.style.overflow = 'hidden';
+
+            } else {
+
+                document.body.style.overflow = '';
+
+            }
+
+        }
+
+
+
         // تفعيل كل شيء عند تحميل الصفحة
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -2964,7 +3304,7 @@ $total_sellers = $stmt->fetch()['total'];
 
             createStars();
 
- 
+
 
             // تحديث العدادات التنازلية
 
@@ -2972,7 +3312,71 @@ $total_sellers = $stmt->fetch()['total'];
 
             setInterval(updateCountdowns, 1000);
 
- 
+
+
+            // إعداد القائمة الجانبية للموبايل
+
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+
+            const overlay = document.getElementById('mobileSidebarOverlay');
+
+            const mobileSidebarLinks = document.querySelectorAll('.mobile-nav a');
+
+
+
+            // فتح/إغلاق القائمة عند الضغط على زر الهامبرغر
+
+            if (hamburgerBtn) {
+
+                hamburgerBtn.addEventListener('click', toggleMobileSidebar);
+
+            }
+
+
+
+            // إغلاق القائمة عند الضغط على الـ overlay
+
+            if (overlay) {
+
+                overlay.addEventListener('click', toggleMobileSidebar);
+
+            }
+
+
+
+            // إغلاق القائمة عند الضغط على أي رابط
+
+            mobileSidebarLinks.forEach(link => {
+
+                link.addEventListener('click', () => {
+
+                    if (window.innerWidth <= 768) {
+
+                        toggleMobileSidebar();
+
+                    }
+
+                });
+
+            });
+
+
+
+            // إغلاق القائمة تلقائياً عند تكبير الشاشة
+
+            window.addEventListener('resize', () => {
+
+                const mobileSidebar = document.getElementById('mobileSidebar');
+
+                if (window.innerWidth > 768 && mobileSidebar.classList.contains('active')) {
+
+                    toggleMobileSidebar();
+
+                }
+
+            });
+
+
 
             // إضافة تأثير parallax خفيف للبطاقات
 
@@ -2984,7 +3388,7 @@ $total_sellers = $stmt->fetch()['total'];
 
                 const y = e.clientY / window.innerHeight;
 
- 
+
 
                 cards.forEach((card, index) => {
 
@@ -2994,7 +3398,7 @@ $total_sellers = $stmt->fetch()['total'];
 
                     const yOffset = (y - 0.5) * speed;
 
- 
+
 
                     card.style.transform = `translateX(${xOffset}px) translateY(${yOffset}px)`;
 
