@@ -1,0 +1,442 @@
+/**
+ * Responsive CSS & Mobile Menu
+ * BidOra - نظام responsive شامل
+ */
+
+/* ==========================
+   MOBILE MENU STYLES
+   ========================== */
+
+/* Mobile Menu Toggle Button */
+.mobile-menu-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    background: rgba(102, 126, 234, 0.9);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.mobile-menu-toggle:hover {
+    background: rgba(102, 126, 234, 1);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.mobile-menu-toggle.active {
+    background: rgba(255, 78, 80, 0.9);
+}
+
+.menu-icon {
+    position: relative;
+    width: 24px;
+    height: 20px;
+    margin: 15px auto;
+}
+
+.menu-icon span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 3px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu-icon span:nth-child(1) {
+    top: 0;
+}
+
+.menu-icon span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.menu-icon span:nth-child(3) {
+    bottom: 0;
+}
+
+/* Animated Menu Icon */
+.mobile-menu-toggle.active .menu-icon span:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.mobile-menu-toggle.active .menu-icon span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.mobile-menu-toggle.active .menu-icon span:nth-child(3) {
+    bottom: 50%;
+    transform: translateY(50%) rotate(-45deg);
+}
+
+/* Sidebar Menu */
+.mobile-sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100vh;
+    background: linear-gradient(180deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    backdrop-filter: blur(20px);
+    border-left: 2px solid rgba(255, 255, 255, 0.1);
+    z-index: 9999;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+}
+
+[dir="ltr"] .mobile-sidebar {
+    right: auto;
+    left: -100%;
+    border-left: none;
+    border-right: 2px solid rgba(255, 255, 255, 0.1);
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 5px 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-sidebar.open {
+    right: 0;
+}
+
+[dir="ltr"] .mobile-sidebar.open {
+    right: auto;
+    left: 0;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.sidebar-logo i {
+    font-size: 32px;
+}
+
+/* Sidebar Menu Items */
+.sidebar-menu {
+    padding: 20px 0;
+}
+
+.sidebar-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 25px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-right: 3px solid transparent;
+}
+
+[dir="ltr"] .sidebar-menu-item {
+    border-right: none;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-menu-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-right-color: #667eea;
+}
+
+[dir="ltr"] .sidebar-menu-item:hover {
+    border-right-color: transparent;
+    border-left-color: #667eea;
+}
+
+.sidebar-menu-item.active {
+    background: rgba(102, 126, 234, 0.2);
+    color: #fff;
+    border-right-color: #13f1fc;
+}
+
+[dir="ltr"] .sidebar-menu-item.active {
+    border-right-color: transparent;
+    border-left-color: #13f1fc;
+}
+
+.sidebar-menu-item i {
+    font-size: 20px;
+    width: 25px;
+    text-align: center;
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-footer-text {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    text-align: center;
+}
+
+/* Overlay */
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+}
+
+.mobile-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ==========================
+   RESPONSIVE BREAKPOINTS
+   ========================== */
+
+/* Tablet & Mobile */
+@media (max-width: 1024px) {
+    .luxury-nav {
+        gap: 15px;
+    }
+
+    .nav-item span {
+        font-size: 14px;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+    /* Show Mobile Menu Toggle */
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    /* Hide Desktop Navigation */
+    .luxury-nav {
+        display: none !important;
+    }
+
+    /* Adjust Header */
+    .luxury-header {
+        padding: 15px 0;
+    }
+
+    .header-content {
+        justify-content: center;
+    }
+
+    /* Logo adjustments */
+    .animated-logo {
+        font-size: 20px;
+    }
+
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Container adjustments */
+    .container {
+        padding: 0 15px;
+        max-width: 100%;
+    }
+
+    /* Cards adjustments */
+    .auction-card,
+    .product-card,
+    .stat-card {
+        margin-bottom: 20px;
+    }
+
+    /* Grid adjustments */
+    .auctions-grid,
+    .products-grid,
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    /* Text adjustments */
+    h1 {
+        font-size: 28px !important;
+    }
+
+    h2 {
+        font-size: 24px !important;
+    }
+
+    h3 {
+        font-size: 20px !important;
+    }
+
+    /* Button adjustments */
+    .btn,
+    .luxury-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    /* Language switcher position */
+    .language-switcher-wrapper {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 10001;
+    }
+
+    [dir="ltr"] .language-switcher-wrapper {
+        left: auto;
+        right: 80px;
+    }
+
+    /* Hero section adjustments */
+    .hero-section {
+        padding: 60px 15px 40px;
+    }
+
+    /* Form adjustments */
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    input,
+    textarea,
+    select {
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+
+    /* Table responsive */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    /* Modal adjustments */
+    .modal-content {
+        width: 95%;
+        margin: 20px auto;
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+    .mobile-sidebar {
+        width: 280px;
+    }
+
+    h1 {
+        font-size: 24px !important;
+    }
+
+    h2 {
+        font-size: 20px !important;
+    }
+
+    h3 {
+        font-size: 18px !important;
+    }
+
+    .btn,
+    .luxury-btn {
+        padding: 10px 15px;
+        font-size: 13px;
+    }
+
+    /* Adjust padding for small screens */
+    .section-padding {
+        padding: 30px 10px;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .mobile-sidebar {
+        width: 250px;
+    }
+
+    .sidebar-menu-item {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}
+
+/* ==========================
+   UTILITY CLASSES
+   ========================== */
+
+/* Hide on mobile */
+.hide-on-mobile {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .hide-on-mobile {
+        display: none !important;
+    }
+}
+
+/* Show only on mobile */
+.show-on-mobile {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .show-on-mobile {
+        display: block !important;
+    }
+}
+
+/* Scrollbar Styles for Sidebar */
+.mobile-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.mobile-sidebar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.mobile-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(102, 126, 234, 0.5);
+    border-radius: 3px;
+}
+
+.mobile-sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(102, 126, 234, 0.7);
+}

@@ -1,4 +1,7 @@
 <?php
+// تحميل نظام الترجمة
+require_once 'includes/translator.php';
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -44,7 +47,7 @@ if ($verification) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="<?php echo currentLang(); ?>" dir="<?php echo textDirection(); ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -586,6 +589,10 @@ if ($verification) {
             }
         }
     </style>
+
+    <!-- Responsive & Mobile Menu CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
 </head>
 <body>
                         <div style="position: fixed; top: 20px; left: 20px; z-index: 1000;">
@@ -791,5 +798,9 @@ if ($verification) {
             }
         }, 5000);
     </script>
+
+    <!-- Mobile Menu & Responsive JavaScript -->
+    <script src="assets/js/mobile-menu.js"></script>
+
 </body>
 </html>

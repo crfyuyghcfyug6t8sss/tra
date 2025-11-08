@@ -1,4 +1,7 @@
 <?php
+// تحميل نظام الترجمة
+require_once 'includes/translator.php';
+
 require_once 'config/database.php';
 require_once 'includes/functions.php';
 require_once 'includes/ai-chatbot.php';
@@ -30,7 +33,7 @@ $sales = $stmt->fetchAll();
 getChatbotWidget();
 ?>
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="<?php echo currentLang(); ?>" dir="<?php echo textDirection(); ?>">
 <head>
     <meta charset="UTF-8">
     <title>💰 مبيعاتي - المتجر</title>
@@ -382,6 +385,10 @@ getChatbotWidget();
             }
         }
     </style>
+
+    <!-- Responsive & Mobile Menu CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
 </head>
 <body>
     <div class="dynamic-background"></div>
@@ -389,6 +396,10 @@ getChatbotWidget();
     <div class="glowing-particles" id="particles"></div>
 
     <header class="luxury-header">
+    <div style="position: fixed; top: 20px; left: 20px; z-index: 1000;">
+        <?php include 'includes/lang-switcher.php'; ?>
+    </div>
+
         <div class="container">
             <div class="header-content">
                 <div class="logo-text">Bidora</div>
@@ -483,5 +494,9 @@ getChatbotWidget();
 
         document.addEventListener('DOMContentLoaded', createParticles);
     </script>
+
+    <!-- Mobile Menu & Responsive JavaScript -->
+    <script src="assets/js/mobile-menu.js"></script>
+
 </body>
 </html>

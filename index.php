@@ -1,4 +1,6 @@
 <?php
+// تحميل نظام الترجمة
+require_once 'includes/translator.php';
 
 require_once 'config/database.php';
 
@@ -78,7 +80,7 @@ $total_sellers = $stmt->fetch()['total'];
 
 <!DOCTYPE html>
 
-<html lang="ar" dir="rtl">
+<html lang="<?php echo currentLang(); ?>" dir="<?php echo textDirection(); ?>">
 
 <head>
 
@@ -86,7 +88,7 @@ $total_sellers = $stmt->fetch()['total'];
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>🌟 BidOra - منصة مزادات السيارات الفاخرة</title>
+    <title>🌟 <?php echo __('site_name'); ?> - <?php echo __('luxury_car_auction'); ?></title>
 
  
 
@@ -2156,6 +2158,9 @@ $total_sellers = $stmt->fetch()['total'];
 
     </style>
 
+    <!-- Responsive & Mobile Menu CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
 </head>
 
 <body>
@@ -2224,7 +2229,7 @@ $total_sellers = $stmt->fetch()['total'];
 
                         <i class="fas fa-home"></i>
 
-                        <span>الرئيسية</span>
+                        <span><?php echo __('home'); ?></span>
 
                     </a>
 
@@ -2232,7 +2237,7 @@ $total_sellers = $stmt->fetch()['total'];
 
                         <i class="fas fa-gavel"></i>
 
-                        <span>المزادات</span>
+                        <span><?php echo __('auctions'); ?></span>
 
                     </a>
 
@@ -2240,7 +2245,7 @@ $total_sellers = $stmt->fetch()['total'];
 
                         <i class="fas fa-store"></i>
 
-                        <span>المتجر</span>
+                        <span><?php echo __('store'); ?></span>
 
                     </a>
 
@@ -2250,7 +2255,7 @@ $total_sellers = $stmt->fetch()['total'];
 
                             <i class="fas fa-th-large"></i>
 
-                            <span>لوحة التحكم</span>
+                            <span><?php echo __('dashboard'); ?></span>
 
                         </a>
 
@@ -2258,17 +2263,17 @@ $total_sellers = $stmt->fetch()['total'];
 
                             <i class="fas fa-power-off"></i>
 
-                            <span>خروج</span>
+                            <span><?php echo __('logout'); ?></span>
 
                         </a>
 
                     <?php else: ?>
 
-                        <a href="auth/login.php" class="nav-item">
+                        <a href="login.php" class="nav-item">
 
                             <i class="fas fa-sign-in-alt"></i>
 
-                            <span>دخول</span>
+                            <span><?php echo __('login'); ?></span>
 
                         </a>
 
@@ -3005,6 +3010,9 @@ $total_sellers = $stmt->fetch()['total'];
         });
 
     </script>
+
+    <!-- Mobile Menu & Responsive JavaScript -->
+    <script src="assets/js/mobile-menu.js"></script>
 
 </body>
 

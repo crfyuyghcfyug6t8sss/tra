@@ -1,4 +1,7 @@
 <?php
+// تحميل نظام الترجمة
+require_once 'includes/translator.php';
+
 require_once 'config/database.php';
 require_once 'includes/functions.php';
 
@@ -100,7 +103,7 @@ $stmt = $conn->prepare("UPDATE sale_messages SET is_read = TRUE WHERE chat_id = 
 $stmt->execute([$chat_id, $user_id]);
 ?>
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="<?php echo currentLang(); ?>" dir="<?php echo textDirection(); ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -305,6 +308,10 @@ $stmt->execute([$chat_id, $user_id]);
             box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
         }
     </style>
+
+    <!-- Responsive & Mobile Menu CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
 </head>
 <body>
     <div class="header">
@@ -520,5 +527,9 @@ async function fetchNew() {
 }
 
 setInterval(fetchNew, 3000);
-</script></body>
+</script>
+    <!-- Mobile Menu & Responsive JavaScript -->
+    <script src="assets/js/mobile-menu.js"></script>
+
+</body>
 </html>

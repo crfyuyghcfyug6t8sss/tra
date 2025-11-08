@@ -1,5 +1,8 @@
 <?php
 
+// تحميل نظام الترجمة
+require_once 'includes/translator.php';
+
 require_once 'config/database.php';
 
 require_once 'includes/functions.php';
@@ -328,7 +331,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 
-<html lang="ar" dir="rtl">
+<html lang="<?php echo currentLang(); ?>" dir="<?php echo textDirection(); ?>">
 
 <head>
 
@@ -582,6 +585,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
     </style>
+
+
+    <!-- Responsive & Mobile Menu CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
 
 </head>
 
@@ -1000,6 +1007,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
     </script>
+
+
+    <!-- Mobile Menu & Responsive JavaScript -->
+    <script src="assets/js/mobile-menu.js"></script>
 
 </body>
 

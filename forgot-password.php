@@ -1,4 +1,7 @@
 <?php
+// تحميل نظام الترجمة
+require_once 'includes/translator.php';
+
 require_once '../config/database.php';
 require_once '../includes/functions.php';
 
@@ -48,7 +51,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax']) && $_POST['aj
                     .container { background: white; padding: 40px; border-radius: 8px; max-width: 600px; margin: 20px auto; }
                     .btn { display: inline-block; background: #6366f1; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; }
                 </style>
-            </head>
+            
+    <!-- Responsive & Mobile Menu CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+</head>
             <body>
                 <div class='container'>
                     <h1>استعادة كلمة المرور</h1>
@@ -58,7 +65,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax']) && $_POST['aj
                     <p>أو انسخ هذا الرابط: " . $reset_link . "</p>
                     <p>صلاحية هذا الرابط ساعة واحدة فقط.</p>
                 </div>
-            </body>
+            
+    <!-- Mobile Menu & Responsive JavaScript -->
+    <script src="assets/js/mobile-menu.js"></script>
+
+</body>
             </html>
             ";
             
@@ -82,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax']) && $_POST['aj
 }
 ?>
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="<?php echo currentLang(); ?>" dir="<?php echo textDirection(); ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -244,6 +255,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax']) && $_POST['aj
             color: #8b5cf6;
         }
     </style>
+
+    <!-- Responsive & Mobile Menu CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
 </head>
 <body>
     <div class="container">
@@ -336,5 +351,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax']) && $_POST['aj
             }
         });
     </script>
+
+    <!-- Mobile Menu & Responsive JavaScript -->
+    <script src="assets/js/mobile-menu.js"></script>
+
 </body>
 </html>

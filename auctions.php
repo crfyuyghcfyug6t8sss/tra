@@ -1,5 +1,8 @@
 <?php
 
+// تحميل نظام الترجمة
+require_once 'includes/translator.php';
+
 require_once 'config/database.php';
 
 require_once 'includes/functions.php';
@@ -46,7 +49,7 @@ $auctions = $stmt->fetchAll();
 
 <!DOCTYPE html>
 
-<html lang="ar" dir="rtl">
+<html lang="<?php echo currentLang(); ?>" dir="<?php echo textDirection(); ?>">
 
 <head>
 
@@ -2188,6 +2191,10 @@ $auctions = $stmt->fetchAll();
 
     </style>
 
+
+    <!-- Responsive & Mobile Menu CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
 </head>
 
 <body>
@@ -2215,6 +2222,10 @@ $auctions = $stmt->fetchAll();
     <!-- Header الفاخر -->
 
     <header class="luxury-header">
+    <div style="position: fixed; top: 20px; left: 20px; z-index: 1000;">
+        <?php include 'includes/lang-switcher.php'; ?>
+    </div>
+
 
         <div class="header-glow"></div>
 
@@ -2961,6 +2972,10 @@ $auctions = $stmt->fetchAll();
         });
 
     </script>
+
+
+    <!-- Mobile Menu & Responsive JavaScript -->
+    <script src="assets/js/mobile-menu.js"></script>
 
 </body>
 

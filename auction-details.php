@@ -1,4 +1,7 @@
 <?php
+// تحميل نظام الترجمة
+require_once 'includes/translator.php';
+
 require_once 'config/database.php';
 require_once 'includes/functions.php';
 
@@ -755,6 +758,10 @@ $min_bid_amount = $auction['current_price'] + ($auction['min_bid_increment'] ?? 
             }
         }
     </style>
+
+    <!-- Responsive & Mobile Menu CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
 </head>
 <body>
     <!-- Timer الدائري الجديد -->
@@ -1156,6 +1163,10 @@ $min_bid_amount = $auction['current_price'] + ($auction['min_bid_increment'] ?? 
         }
         
     </script>
+
+    <!-- Mobile Menu & Responsive JavaScript -->
+    <script src="assets/js/mobile-menu.js"></script>
+
 </body>
 </html>
 

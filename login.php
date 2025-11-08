@@ -1,4 +1,7 @@
 <?php
+// تحميل نظام الترجمة
+require_once 'includes/translator.php';
+
 // بداية الجلسة قبل أي شيء
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -131,7 +134,7 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="<?php echo currentLang(); ?>" dir="<?php echo textDirection(); ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -522,6 +525,10 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
             }
         }
     </style>
+
+    <!-- Responsive & Mobile Menu CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
 </head>
 <body>
     <div class="particles" id="particles"></div>
@@ -696,5 +703,9 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
             }
         });
     </script>
+
+    <!-- Mobile Menu & Responsive JavaScript -->
+    <script src="assets/js/mobile-menu.js"></script>
+
 </body>
 </html>

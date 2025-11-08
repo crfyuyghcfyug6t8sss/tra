@@ -1,4 +1,7 @@
 <?php
+// تحميل نظام الترجمة
+require_once 'includes/translator.php';
+
 require_once 'config/database.php';
 require_once 'includes/functions.php';
 
@@ -27,7 +30,7 @@ $stmt->execute([$user_id]);
 $purchases = $stmt->fetchAll();
 ?>
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="<?php echo currentLang(); ?>" dir="<?php echo textDirection(); ?>">
 <head>
     <meta charset="UTF-8">
     <title>مشترياتي</title>
@@ -122,6 +125,10 @@ $purchases = $stmt->fetchAll();
             margin-bottom: 20px;
         }
     </style>
+
+    <!-- Responsive & Mobile Menu CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
 </head>
 <body>
     <div class="header">
@@ -181,5 +188,9 @@ $purchases = $stmt->fetchAll();
             <?php endif; ?>
         </div>
     </div>
+
+    <!-- Mobile Menu & Responsive JavaScript -->
+    <script src="assets/js/mobile-menu.js"></script>
+
 </body>
 </html>

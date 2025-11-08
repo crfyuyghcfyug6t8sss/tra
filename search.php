@@ -1,4 +1,7 @@
 <?php
+// تحميل نظام الترجمة
+require_once 'includes/translator.php';
+
 require_once 'config/database.php';
 require_once 'includes/functions.php';
 
@@ -107,7 +110,7 @@ $brands_stmt = $conn->query("SELECT DISTINCT brand FROM vehicles ORDER BY brand"
 $brands = $brands_stmt->fetchAll(PDO::FETCH_COLUMN);
 ?>
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="<?php echo currentLang(); ?>" dir="<?php echo textDirection(); ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -147,6 +150,10 @@ $brands = $brands_stmt->fetchAll(PDO::FETCH_COLUMN);
         .no-results { text-align: center; padding: 60px 20px; background: white; border-radius: 12px; }
         @media (max-width: 768px) { .search-layout { grid-template-columns: 1fr; } .filters { position: static; } }
     </style>
+
+    <!-- Responsive & Mobile Menu CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
 </head>
 <body>
     <div class="header">
@@ -287,5 +294,9 @@ $brands = $brands_stmt->fetchAll(PDO::FETCH_COLUMN);
             </div>
         </div>
     </div>
+
+    <!-- Mobile Menu & Responsive JavaScript -->
+    <script src="assets/js/mobile-menu.js"></script>
+
 </body>
 </html>

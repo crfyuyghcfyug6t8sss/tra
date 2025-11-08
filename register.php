@@ -1,4 +1,7 @@
 <?php
+// تحميل نظام الترجمة
+require_once 'includes/translator.php';
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -137,7 +140,11 @@ if (isset($_POST['ajax']) && $_POST['ajax'] == '1') {
                 .footer p { margin: 5px 0; }
                 .icon { font-size: 3rem; margin-bottom: 20px; }
             </style>
-        </head>
+        
+    <!-- Responsive & Mobile Menu CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+</head>
         <body>
             <div class='container'>
                 <div class='header'>
@@ -173,7 +180,11 @@ if (isset($_POST['ajax']) && $_POST['ajax'] == '1') {
                     <p>إذا كان لديك أي استفسارات، تواصل معنا على: <a href='mailto:support@bidora.de' style='color: #6366f1;'>support@bidora.de</a></p>
                 </div>
             </div>
-        </body>
+        
+    <!-- Mobile Menu & Responsive JavaScript -->
+    <script src="assets/js/mobile-menu.js"></script>
+
+</body>
         </html>
         ";
         
@@ -254,7 +265,7 @@ $countries = [
 ];
 ?>
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="<?php echo currentLang(); ?>" dir="<?php echo textDirection(); ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -612,6 +623,10 @@ $countries = [
             }
         }
     </style>
+
+    <!-- Responsive & Mobile Menu CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
 </head>
 <body>
                                     <div style="position: fixed; top: 20px; left: 20px; z-index: 1000;">
@@ -851,5 +866,9 @@ $countries = [
             }
         });
     </script>
+
+    <!-- Mobile Menu & Responsive JavaScript -->
+    <script src="assets/js/mobile-menu.js"></script>
+
 </body>
 </html>

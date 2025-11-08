@@ -1,5 +1,8 @@
 <?php
 
+// تحميل نظام الترجمة
+require_once 'includes/translator.php';
+
 require_once 'config/database.php';
 
 require_once 'includes/functions.php';
@@ -90,7 +93,7 @@ $unread_count = count($unread);
 
 <!DOCTYPE html>
 
-<html lang="ar" dir="rtl">
+<html lang="<?php echo currentLang(); ?>" dir="<?php echo textDirection(); ?>">
 
 <head>
 
@@ -2164,6 +2167,10 @@ $unread_count = count($unread);
 
     </style>
 
+
+    <!-- Responsive & Mobile Menu CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
 </head>
 
 <body>
@@ -2857,6 +2864,10 @@ $unread_count = count($unread);
         });
 
     </script>
+
+
+    <!-- Mobile Menu & Responsive JavaScript -->
+    <script src="assets/js/mobile-menu.js"></script>
 
 </body>
 

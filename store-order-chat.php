@@ -1,4 +1,7 @@
 <?php
+// تحميل نظام الترجمة
+require_once 'includes/translator.php';
+
 require_once 'config/database.php';
 require_once 'includes/functions.php';
 
@@ -70,7 +73,7 @@ $stmt = $conn->prepare("UPDATE store_order_messages SET is_read = TRUE WHERE ord
 $stmt->execute([$order_id, $user_id]);
 ?>
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="<?php echo currentLang(); ?>" dir="<?php echo textDirection(); ?>">
 <head>
     <meta charset="UTF-8">
     <title>محادثة الطلب</title>
@@ -170,6 +173,10 @@ $stmt->execute([$order_id, $user_id]);
             cursor: pointer;
         }
     </style>
+
+    <!-- Responsive & Mobile Menu CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
 </head>
 <body>
     <div class="header">
@@ -215,5 +222,9 @@ $stmt->execute([$order_id, $user_id]);
     <script>
         document.getElementById('messagesArea').scrollTop = document.getElementById('messagesArea').scrollHeight;
     </script>
+
+    <!-- Mobile Menu & Responsive JavaScript -->
+    <script src="assets/js/mobile-menu.js"></script>
+
 </body>
 </html>
